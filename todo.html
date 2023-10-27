@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Form</title>
+</head>
+<body>
+  <label for="formCount">Number of Forms:</label>
+  <input type="number" id="formCount" min="0" value="0" onchange="updateForms()">
+  <div id="formContainer"></div>
+
+  <script>
+    function updateForms() {
+      const formCount = parseInt(document.getElementById("formCount").value);
+      const formContainer = document.getElementById("formContainer");   
+
+      while (formContainer.firstChild) {
+        formContainer.removeChild(formContainer.firstChild);
+        console.log("remove forms" + formCount);
+      }
+
+      for (let i = 0; i < formCount; i++) {
+        const form = document.createElement("form");
+        form.innerHTML = `
+          <h2>Simple Form ${i + 1}</h2>
+          <label for="inputField${i}">Input Field:</label>
+          <input type="text" id="inputField${i}" name="inputField${i}">
+        `;
+        formContainer.appendChild(form);
+        console.log("add forms" + formCount);
+      }
+    }
+  </script>
+</body>
+</html>
